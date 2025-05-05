@@ -1,0 +1,36 @@
+<h1>Record Match Result</h1>
+
+<%= form_with(model: [@match, @result], url: match_result_path(@match)) do |form| %>
+  <% if @result.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(@result.errors.count, "error") %> prohibited this result from being saved:</h2>
+      <ul>
+        <% @result.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :team1_score, "#{@match.team1.name} Score" %>
+    <%= form.number_field :team1_score, class: "form-control", min: 0 %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :team2_score, "#{@match.team2.name} Score" %>
+    <%= form.number_field :team2_score, class: "form-control", min: 0 %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :winner_id, "Winner" %>
+    <%= form.collection_select :winner_id, [@match.team1, @match.team2], :id, :name,
+        { include_blank: 'Select winner (optional for draw)' },
+        { class: "form-control" } %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Record Result", class: "btn btn-primary" %>
+    <%= link_to "Cancel", match_path(@match), class: "btn btn-danger" %>
+  </div>
+<% end %>

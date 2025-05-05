@@ -1,0 +1,85 @@
+<div class="match-header">
+  <h1><%= @match.team1.name %> vs <%= @match.team2.name %></h1>
+  <div class="actions">
+    <%= link_to "Edit Match", edit_match_path(@match), class: "btn btn-primary" %>
+    <%= button_to "Delete Match", match_path(@match), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+  </div>
+</div>
+
+<div class="match-content">
+  <div class="card">
+    <h2>Match Information</h2>
+    <div class="match-details">
+      <p><strong>Date:</strong> <%= @match.date.strftime("%B %d, %Y at %H:%M") %></p>
+      <p><strong>Status:</strong> 
+        <% if @match.result %>
+          <span class="status completed">Completed</span>
+        <% else %>
+          <span class="status upcoming">Upcoming</span>
+        <% end %>
+      </p>
+    </div>
+    
+    <div class="teams-info">
+      <div class="team">
+        <h3><%= @match.team1.name %></h3>
+        <div class="players-list">
+          <% @match.team1.players.each do |player| %>
+            <div class="player-item">
+              <span class="player-name"><%= player.first_name %> <%= player.last_name %></span>
+              <span class="player-role"><%= player.role %></span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="team">
+        <h3><%= @match.team2.name %></h3>
+        <div class="players-list">
+          <% @match.team2.players.each do |player| %>
+            <div class="player-item">
+              <span class="player-name"><%= player.first_name %> <%= player.last_name %></span>
+              <span class="player-role"><%= player.role %></span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Match Result</h2>
+    <% if @match.result %>
+      <div class="result-info">
+        <div class="score-display">
+          <div class="team-score">
+            <span class="team-name"><%= @match.team1.name %></span>
+            <span class="score <%= @match.result.winner_id == @match.team1_id ? 'winner' : '' %>">
+              <%= @match.result.team1_score %>
+            </span>
+          </div>
+          <div class="score-separator">-</div>
+          <div class="team-score">
+            <span class="team-name"><%= @match.team2.name %></span>
+            <span class="score <%= @match.result.winner_id == @match.team2_id ? 'winner' : '' %>">
+              <%= @match.result.team2_score %>
+            </span>
+          </div>
+        </div>
+        <p class="winner">
+          Winner: <%= @match.result.winner.name %>
+        </p>
+        <div class="actions">
+          <%= link_to "Edit Result", edit_match_result_path(@match), class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% else %>
+      <div class="no-result">
+        <p>No result recorded</p>
+        <div class="actions">
+          <%= link_to "Record Result", new_match_result_path(@match), class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

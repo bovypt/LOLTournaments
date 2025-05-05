@@ -1,0 +1,30 @@
+<h1>Team Standings</h1>
+
+<div class="standings-table">
+  <table>
+    <thead>
+      <tr>
+        <th>Position</th>
+        <th>Team</th>
+        <th>Played</th>
+        <th>Won</th>
+        <th>Lost</th>
+        <th>Points</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @teams.each_with_index do |team, index| %>
+        <tr class="<%= index < 3 ? 'top-three' : '' %>">
+          <td><%= index + 1 %></td>
+          <td><%= link_to team.name, team_path(team), class: "team-name" %></td>
+          <td><%= team.matches.count %></td>
+          <td><%= team.wins %></td>
+          <td><%= team.losses %></td>
+          <td class="points"><%= team.points %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+      

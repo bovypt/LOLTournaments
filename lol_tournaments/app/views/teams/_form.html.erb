@@ -1,0 +1,22 @@
+<%= form_with(model: team) do |form| %>
+  <% if team.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
+      <ul>
+        <% team.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to "Cancel", teams_path, class: "btn btn-danger" %>
+  </div>
+<% end %> 

@@ -1,0 +1,52 @@
+<div class="team-header">
+  <h1><%= @team.name %></h1>
+  <div class="actions">
+    <%= link_to "Edit Team", edit_team_path(@team), class: "btn btn-primary" %>
+    <%= button_to "Delete Team", team_path(@team), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+  </div>
+</div>
+
+<div class="team-content">
+  <section class="players-section">
+    <div class="section-header">
+      <h2>Players</h2>
+      <% if @team.can_add_player? %>
+        <%= link_to "Add Player", new_team_player_path(@team), class: "btn btn-primary" %>
+      <% else %>
+        <p class="alert alert-warning">This team has reached its maximum of 5 players.</p>
+      <% end %>
+    </div>
+
+    <div class="players-grid">
+      <% @players.each do |player| %>
+        <div class="card">
+          <h3><%= player.first_name %> <%= player.last_name %></h3>
+          <p>Role: <%= player.role %></p>
+          <div class="actions">
+            <%= link_to "Edit", edit_player_path(player), class: "btn btn-primary" %>
+            <%= button_to "Remove", player_path(player), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+
+  <section class="matches-section">
+    <h2>Matches</h2>
+    <div class="matches-list">
+      <% @matches.each do |match| %>
+        <div class="card">
+          <h3>Match against <%= match.team1_id == @team.id ? match.team2.name : match.team1.name %></h3>
+          <p>Date: <%= match.date.strftime("%B %d, %Y") %></p>
+          <% if match.result %>
+            <p>Score: <%= match.result.team1_score %> - <%= match.result.team2_score %></p>
+            <p>Result: <%= match.result.winner_id == @team.id ? "Victory" : "Defeat" %></p>
+          <% else %>
+            <p>No result recorded</p>
+          <% end %>
+          <%= link_to "View Match", match_path(match), class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</div>

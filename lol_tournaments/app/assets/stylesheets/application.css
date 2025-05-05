@@ -8,3 +8,477 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.navbar {
+  background-color: #1a1a1a;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+}
+
+.navbar-brand {
+  color: #fff;
+  font-size: 1.5rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar-item {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.navbar-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.alert {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.footer {
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 1rem 0;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.player-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.team-members {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.teammate {
+  padding: 0.5rem;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.matches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.match-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.match-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.match-date {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.match-result {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.score {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.winner {
+  text-align: center;
+  color: #28a745;
+  font-weight: bold;
+}
+
+.no-result {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+.teams-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.team {
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.players-list {
+  margin-top: 0.5rem;
+}
+
+.players-list p {
+  margin: 0.25rem 0;
+}
+
+.matches-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.matches-filters {
+  display: flex;
+  gap: 1rem;
+}
+
+.matches-filters .form-group {
+  margin-bottom: 0;
+}
+
+.card.completed {
+  border-left: 4px solid #28a745;
+}
+
+.card.upcoming {
+  border-left: 4px solid #007bff;
+}
+
+.score-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.team-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.team-name {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.score {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.score.winner {
+  color: #28a745;
+}
+
+.score-separator {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #666;
+}
+
+.match-status {
+  text-align: center;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.status {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.status.upcoming {
+  color: #007bff;
+}
+
+.teams-preview {
+  color: #666;
+}
+
+.match-details {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.status.completed {
+  color: #28a745;
+}
+
+.player-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #fff;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.player-name {
+  font-weight: 500;
+}
+
+.player-role {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.no-result {
+  text-align: center;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.no-result p {
+  color: #666;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.standings-table {
+  margin: 2rem 0;
+  overflow-x: auto;
+}
+
+.standings-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.standings-table th,
+.standings-table td {
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.standings-table th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+  color: #495057;
+}
+
+.standings-table tr:hover {
+  background-color: #f8f9fa;
+}
+
+.standings-table tr.top-three {
+  background-color: #e8f5e9;
+}
+
+.standings-table tr.top-three:hover {
+  background-color: #c8e6c9;
+}
+
+.standings-table .team-name {
+  text-align: left;
+  font-weight: 500;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.standings-table .team-name:hover {
+  text-decoration: underline;
+}
+
+.standings-table .points {
+  font-weight: bold;
+  color: #28a745;
+}
+
+.standings-legend {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-color {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 2px;
+}
+
+.legend-color.top-three {
+  background-color: #e8f5e9;
+  border: 1px solid #c8e6c9;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  margin: 0;
+}
+
+.players-section {
+  margin-bottom: 2rem;
+}
+
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.players-grid .card {
+  display: flex;
+  flex-direction: column;
+}
+
+.players-grid .card h3 {
+  margin: 0 0 0.5rem 0;
+}
+
+.players-grid .card p {
+  margin: 0 0 1rem 0;
+  color: #666;
+}
+
+.players-grid .actions {
+  margin-top: auto;
+}

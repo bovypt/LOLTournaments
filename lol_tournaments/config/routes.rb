@@ -1,4 +1,23 @@
 Rails.application.routes.draw do
+  devise_for :admins, controllers: { sessions: 'admins/sessions' }
+  devise_for :users, controllers: { 
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
+  root 'teams#index'
+  
+  resources :teams do
+    resources :players, only: [:new, :create]
+  end
+  
+  resources :players, except: [:new, :create]
+  
+  resources :matches do
+    resource :result, only: [:new, :create, :edit, :update]
+  end
+
+  get 'standings', to: 'standings#index'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

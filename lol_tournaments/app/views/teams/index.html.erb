@@ -1,0 +1,19 @@
+<h1>Teams</h1>
+
+<div class="actions">
+  <%= link_to "New Team", new_team_path, class: "btn btn-primary" %>
+</div>
+
+<div class="teams-grid">
+  <% @teams.each do |team| %>
+    <div class="card">
+      <h2><%= team.name %></h2>
+      <p><%= pluralize(team.players.count, 'player') %></p>
+      <div class="actions">
+        <%= link_to "View", team_path(team), class: "btn btn-primary" %>
+        <%= link_to "Edit", edit_team_path(team), class: "btn btn-primary" %>
+        <%= button_to "Delete", team_path(team), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+      </div>
+    </div>
+  <% end %>
+</div>

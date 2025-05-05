@@ -1,0 +1,28 @@
+<div class="player-header">
+  <h1><%= @player.first_name %> <%= @player.last_name %></h1>
+  <div class="actions">
+    <%= link_to "Edit Player", edit_player_path(@player), class: "btn btn-primary" %>
+    <%= button_to "Delete Player", player_path(@player), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+  </div>
+</div>
+
+<div class="player-content">
+  <div class="card">
+    <h2>Player Information</h2>
+    <p><strong>Team:</strong> <%= @player.team.name %></p>
+    <p><strong>Role:</strong> <%= @player.role %></p>
+  </div>
+
+  <div class="card">
+    <h2>Team Members</h2>
+    <div class="team-members">
+      <% @player.team.players.each do |teammate| %>
+        <% unless teammate == @player %>
+          <div class="teammate">
+            <p><%= teammate.first_name %> <%= teammate.last_name %> - <%= teammate.role %></p>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

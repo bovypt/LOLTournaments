@@ -1,0 +1,92 @@
+<h1>Matches</h1>
+
+<div class="matches-header">
+  <div class="actions">
+    <%= link_to "New Match", new_match_path, class: "btn btn-primary" %>
+  </div>
+  <div class="matches-filters">
+    <div class="form-group">
+      <label for="status">Filter by status:</label>
+      <select id="status" class="form-control">
+        <option value="all">All Matches</option>
+        <option value="upcoming">Upcoming</option>
+        <option value="completed">Completed</option>
+        <option value="no-result">No Result</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="matches-grid">
+  <% @matches.each do |match| %>
+    <div class="card <%= match.result ? 'completed' : 'upcoming' %>">
+      <div class="match-header">
+        <h2><%= match.team1.name %> vs <%= match.team2.name %></h2>
+        <p class="match-date"><%= match.date.strftime("%B %d, %Y at %H:%M") %></p>
+      </div>
+
+      <% if match.result %>
+        <div class="match-result">
+          <div class="score-display">
+            <div class="team-score">
+              <span class="team-name"><%= match.team1.name %></span>
+              <span class="score <%= match.result.winner_id == match.team1_id ? 'winner' : '' %>">
+                <%= match.result.team1_score %>
+              </span>
+            </div>
+            <div class="score-separator">-</div>
+            <div class="team-score">
+              <span class="team-name"><%= match.team2.name %></span>
+              <span class="score <%= match.result.winner_id == match.team2_id ? 'winner' : '' %>">
+                <%= match.result.team2_score %>
+              </span>
+            </div>
+          </div>
+          <p class="winner">
+            Winner: <%= match.result.winner.name %>
+          </p>
+        </div>
+      <% else %>
+        <div class="match-status">
+          <p class="status upcoming">Upcoming Match</p>
+          <p class="teams-preview">
+            <%= match.team1.name %> vs <%= match.team2.name %>
+          </p>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= link_to "View Details", match_path(match), class: "btn btn-primary" %>
+        <%= link_to "Edit", edit_match_path(match), class: "btn btn-primary" %>
+        <%= button_to "Delete", match_path(match), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<% content_for :head do %>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const statusFilter = document.getElementById('status');
+      const matches = document.querySelectorAll('.card');
+
+      statusFilter.addEventListener('change', function() {
+        const selectedStatus = this.value;
+        
+        matches.forEach(match => {
+          if (selectedStatus === 'all') {
+            match.style.display = 'block';
+          } else if (selectedStatus === 'completed' && match.classList.contains('completed')) {
+            match.style.display = 'block';
+          } else if (selectedStatus === 'upcoming' && match.classList.contains('upcoming')) {
+            match.style.display = 'block';
+          } else if (selectedStatus === 'no-result' && !match.querySelector('.match-result')) {
+            match.style.display = 'block';
+          } else {
+            match.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+<% end %>

@@ -1,0 +1,16 @@
+<h1>Players</h1>
+
+<div class="players-grid">
+  <% @players.each do |player| %>
+    <div class="card">
+      <h2><%= player.first_name %> <%= player.last_name %></h2>
+      <p>Team: <%= player.team.name %></p>
+      <p>Role: <%= player.role %></p>
+      <div class="actions">
+        <%= link_to "View", player_path(player), class: "btn btn-primary" %>
+        <%= link_to "Edit", edit_player_path(player), class: "btn btn-primary" %>
+        <%= button_to "Delete", player_path(player), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+      </div>
+    </div>
+  <% end %>
+</div>
